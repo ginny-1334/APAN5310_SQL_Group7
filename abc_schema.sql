@@ -42,7 +42,7 @@ ALTER TABLE Store
 ADD CONSTRAINT fk_store_manager FOREIGN KEY (manager_id) REFERENCES Employee(employee_id);
 
 -- ShiftSchedule Table
--- Defines work schedules with shift types and time blocks
+-- Defines work schedules 
 CREATE TABLE ShiftSchedule (
     schedule_id SERIAL PRIMARY KEY,
     employee_id INTEGER REFERENCES Employee(employee_id) ON DELETE CASCADE,
@@ -92,7 +92,7 @@ CREATE TABLE Inventory (
 );
 
 -- Vendor Table
--- Holds vendor contact information and contract terms
+-- Holds vendor name and tier information
 CREATE TABLE Vendor (
     vendor_id SERIAL PRIMARY KEY,
     vendor_name VARCHAR(100) NOT NULL,
@@ -293,48 +293,48 @@ EXECUTE FUNCTION add_inventory_on_delivery();
 --===========================================
 -- Cardinality/Relationships
 
--- Store to Employee: 1:M (One store has many employees) // Checked
+-- Store to Employee: 1:M (One store has many employees) //  
 
--- Store to Inventory: 1:M (One store manages inventory for many products) // checked
+-- Store to Inventory: 1:M (One store manages inventory for many products) //  
  
--- Store to Sale: 1:M (One store processes many sales) // checked
+-- Store to Sale: 1:M (One store processes many sales) //  
 
--- Store to Expense: 1:M (One store incurs many expenses) // checked
+-- Store to Expense: 1:M (One store incurs many expenses) //  
 
--- Store to Delivery: 1:M (One store receives many deliveries) // checked
+-- Store to Delivery: 1:M (One store receives many deliveries) //  
 
--- Employee to ShiftSchedule: 1:M (One employee can have many shift records) //checked
+-- Employee to ShiftSchedule: 1:M (One employee can have many shift records) // 
 
--- Department to Employee: 1:M (One department has many employees) // checked
+-- Department to Employee: 1:M (One department has many employees) //  
 
--- Category to Product: 1:M (One category includes many products) // checked
+-- Category to Product: 1:M (One category includes many products) //  
 
--- Product to Inventory: 1:M (One product appears in inventory across many stores) //checked
+-- Product to Inventory: 1:M (One product appears in inventory across many stores) // 
 
--- Product to ProductPricing: 1:M (One product has many pricing records over time) // checked
+-- Product to ProductPricing: 1:M (One product has many pricing records over time) //  
 
--- Product to Promotion: 1:M (One product can be part of multiple promotions) //checked
+-- Product to Promotion: 1:M (One product can be part of multiple promotions) // 
 
--- Product to SaleItem: 1:M (One product can appear in many sale transactions) // checked
+-- Product to SaleItem: 1:M (One product can appear in many sale transactions) //  
 
--- Product to ProductReturn: 1:M (One product can be returned in many transactions) // checked
+-- Product to ProductReturn: 1:M (One product can be returned in many transactions) //  
 
--- Product to DeliveryItem: 1:M (One product can appear in many deliveries) //checked
+-- Product to DeliveryItem: 1:M (One product can appear in many deliveries) // 
 
--- Vendor to Delivery: 1:M (One vendor makes many deliveries) // checked
+-- Vendor to Delivery: 1:M (One vendor makes many deliveries) //  
 
--- Vendor to VendorProduct: 1:M (One vendor supplies multiple products) // checked
+-- Vendor to VendorProduct: 1:M (One vendor supplies multiple products) //  
 
--- VendorProduct (Vendor to Product): M:N via VendorProduct (A vendor supplies many products, and a product can come from multiple vendors) //checked
+-- VendorProduct (Vendor to Product): M:N via VendorProduct (A vendor supplies many products, and a product can come from multiple vendors) // 
 
--- Delivery to DeliveryItem: 1:M (One delivery includes many items) // checked
+-- Delivery to DeliveryItem: 1:M (One delivery includes many items) //  
 
--- Sale to SaleItem: 1:M (One sale contains multiple products) // checked
+-- Sale to SaleItem: 1:M (One sale contains multiple products) //  
 
--- Sale to ProductReturn: 1:M (One sale can include multiple returned products) //checked
+-- Sale to ProductReturn: 1:M (One sale can include multiple returned products) // 
 
--- ReturnReason to ProductReturn: 1:M (One reason can apply to many returns) // checked
+-- ReturnReason to ProductReturn: 1:M (One reason can apply to many returns) //  
 
--- SaleItem to Promotion: M:1 (Many sale items can reference one promotion) // checked
+-- SaleItem to Promotion: M:1 (Many sale items can reference one promotion) //  
 
--- Store to Manager (Employee): 1:1 (Each store is managed by one employee) // checked
+-- Store to Manager (Employee): 1:1 (Each store is managed by one employee) //  
